@@ -24,7 +24,7 @@ class ProductItem extends StatelessWidget {
           children: [
             IconButton(
               icon: Icon(Icons.edit),
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).colorScheme.primary,
               onPressed: () {
                 Navigator.of(context).pushNamed(
                   AppRoutes.PRODUCT_FORM,

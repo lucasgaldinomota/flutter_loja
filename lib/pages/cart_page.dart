@@ -36,7 +36,7 @@ class CartPage extends StatelessWidget {
                   ),
                   SizedBox(width: 10),
                   Chip(
-                    backgroundColor: Theme.of(context).primaryColor,
+                    backgroundColor: Theme.of(context).colorScheme.primary,
                     label: Text(
                       'R\$${cart.totalAmount.toStringAsFixed(2)}',
                       style: TextStyle(
@@ -50,7 +50,7 @@ class CartPage extends StatelessWidget {
                     child: Text('COMPRAR'),
                     style: TextButton.styleFrom(
                       textStyle: TextStyle(
-                        color: Theme.of(context).primaryColor,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                     onPressed: () {
