@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/exceptions/auth_exception.dart';
+import 'package:shop/models/auth.dart';
 
 enum AuthMode { Signup, Login }
 
@@ -32,7 +35,29 @@ class _AuthFormState extends State<AuthForm> {
     });
   }
 
-  void _submit() {
+  void _showErrorDialog(String msg) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(
+          'Ocorreu um Erro',
+          style: TextStyle(color: Colors.black),
+        ),
+        content: Text(
+          msg,
+          style: TextStyle(color: Colors.black),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text('Fechar'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _submit() async {
     final isValid = _formKey.currentState?.validate() ?? false;
 
     if (!isValid) {
@@ -42,11 +67,26 @@ class _AuthFormState extends State<AuthForm> {
     setState(() => _isLoading = true);
 
     _formKey.currentState?.save();
+    Auth auth = Provider.of(context, listen: false);
 
-    if (_isLogin()) {
-      //Login
-    } else {
-      // Registrar
+    try {
+      if (_isLogin()) {
+        //Login
+        await auth.login(
+          _authData['email']!,
+          _authData['password']!,
+        );
+      } else {
+        // Registrar
+        await auth.signup(
+          _authData['email']!,
+          _authData['password']!,
+        );
+      }
+    } on AuthException catch (error) {
+      _showErrorDialog(error.toString());
+    } catch (error) {
+      _showErrorDialog('Ocorreu um erro inesperado!');
     }
 
     setState(() => _isLoading = false);
@@ -69,6 +109,7 @@ class _AuthFormState extends State<AuthForm> {
           child: Column(
             children: [
               TextFormField(
+                style: TextStyle(color: Colors.black),
                 decoration: InputDecoration(labelText: 'E-mail'),
                 keyboardType: TextInputType.emailAddress,
                 onSaved: (email) => _authData['email'] = email ?? '',
@@ -81,6 +122,7 @@ class _AuthFormState extends State<AuthForm> {
                 },
               ),
               TextFormField(
+                style: TextStyle(color: Colors.black),
                 decoration: InputDecoration(labelText: 'Senha'),
                 keyboardType: TextInputType.emailAddress,
                 obscureText: true,
@@ -96,10 +138,10 @@ class _AuthFormState extends State<AuthForm> {
               ),
               if (_isSignup())
                 TextFormField(
+                  style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(labelText: 'Confirmar Senha'),
                   keyboardType: TextInputType.emailAddress,
                   obscureText: true,
-                  controller: _passwordController,
                   validator: _isLogin()
                       ? null
                       : (_password) {
