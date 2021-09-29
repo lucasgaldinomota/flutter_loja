@@ -55,7 +55,7 @@ class AuthPage extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 45,
                       fontFamily: 'Anton',
-                      color: Theme.of(context).textTheme.headline6?.color,
+                      color: Colors.white,
                     ),
                   ),
                 ),
