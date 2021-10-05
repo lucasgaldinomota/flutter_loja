@@ -17,7 +17,7 @@ class AuthOrHomePage extends StatelessWidget {
           return Center(child: CircularProgressIndicator());
         } else if (snapshot.error != null) {
           return Center(
-            child: Text('Ocorreu um erro!'),
+            child: Text('An error has occurred!'),
           );
         } else {
           return auth.isAuth ? ProductsOverviewPage() : AuthPage();

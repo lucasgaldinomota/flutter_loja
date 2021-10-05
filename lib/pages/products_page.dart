@@ -20,7 +20,7 @@ class ProductsPage extends StatelessWidget {
     final ProductList products = Provider.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Gerenciar Produtos'),
+        title: Text('Manage Products'),
         actions: [
           IconButton(
             icon: Icon(Icons.add),

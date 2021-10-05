@@ -41,15 +41,15 @@ class ProductItem extends StatelessWidget {
                 showDialog<bool>(
                   context: context,
                   builder: (ctx) => AlertDialog(
-                    title: Text('Excluir Produto?'),
-                    content: Text('Tem certeza?'),
+                    title: Text('Delete product?'),
+                    content: Text('Sure?'),
                     actions: [
                       TextButton(
-                        child: Text('Não'),
+                        child: Text('No'),
                         onPressed: () => Navigator.of(ctx).pop(false),
                       ),
                       TextButton(
-                        child: Text('Sim'),
+                        child: Text('Yes'),
                         onPressed: () => Navigator.of(ctx).pop(true),
                       ),
                     ],

@@ -34,17 +34,17 @@ class CartItemWidget extends StatelessWidget {
         return showDialog<bool>(
           context: context,
           builder: (ctx) => AlertDialog(
-            title: Text('Tem Certeza?'),
-            content: Text('Quer remover o item do carrinho?'),
+            title: Text('Sure?'),
+            content: Text('Do you want to remove the item from the cart?'),
             actions: [
               TextButton(
-                child: Text('Não'),
+                child: Text('No'),
                 onPressed: () {
                   Navigator.of(ctx).pop(false);
                 },
               ),
               TextButton(
-                child: Text('Sim'),
+                child: Text('Yes'),
                 onPressed: () {
                   Navigator.of(ctx).pop(true);
                 },
@@ -82,7 +82,7 @@ class CartItemWidget extends StatelessWidget {
               ),
             ),
             title: Text(cartItem.name),
-            subtitle: Text('Total: R\$ ${cartItem.price * cartItem.quantity}'),
+            subtitle: Text('Total: \$ ${cartItem.price * cartItem.quantity}'),
             trailing: Text('${cartItem.quantity}x'),
           ),
         ),

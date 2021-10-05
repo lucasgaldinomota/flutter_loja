@@ -28,7 +28,6 @@ class _AuthFormState extends State<AuthForm>
   Animation<Offset>? _slideAnimation;
 
   bool _isLogin() => _authMode == AuthMode.Login;
-  // bool _isSignup() => _authMode == AuthMode.Signup;
 
   @override
   void initState() {
@@ -60,8 +59,6 @@ class _AuthFormState extends State<AuthForm>
         curve: Curves.linear,
       ),
     );
-
-    // _heightAnimation?.addListener(() => setState(() {}));
   }
 
   @override
@@ -86,12 +83,12 @@ class _AuthFormState extends State<AuthForm>
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('Ocorreu um Erro'),
+        title: Text('An error ocurred.'),
         content: Text(msg),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Text('Fechar'),
+            child: Text('Close'),
           ),
         ],
       ),
@@ -112,13 +109,11 @@ class _AuthFormState extends State<AuthForm>
 
     try {
       if (_isLogin()) {
-        //Login
         await auth.login(
           _authData['email']!,
           _authData['password']!,
         );
       } else {
-        // Registrar
         await auth.signup(
           _authData['email']!,
           _authData['password']!,
@@ -127,7 +122,7 @@ class _AuthFormState extends State<AuthForm>
     } on AuthException catch (error) {
       _showErrorDialog(error.toString());
     } catch (error) {
-      _showErrorDialog('Ocorreu um erro inesperado!');
+      _showErrorDialog('An unexpected error has occurred!');
     }
 
     setState(() => _isLoading = false);
@@ -146,7 +141,6 @@ class _AuthFormState extends State<AuthForm>
         curve: Curves.easeIn,
         padding: const EdgeInsets.all(16),
         height: _isLogin() ? 310 : 400,
-        // height: _heightAnimation?.value.height ?? (_isLogin() ? 310 : 400),
         width: deviceSize.width * 0.75,
         child: Form(
           key: _formKey,
@@ -159,13 +153,13 @@ class _AuthFormState extends State<AuthForm>
                 validator: (_email) {
                   final email = _email ?? '';
                   if (email.trim().isEmpty || !email.contains('@')) {
-                    return 'Informe um e-mail válido.';
+                    return 'Enter a valid email address.';
                   }
                   return null;
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Senha'),
+                decoration: InputDecoration(labelText: 'Password'),
                 keyboardType: TextInputType.emailAddress,
                 obscureText: true,
                 controller: _passwordController,
@@ -173,7 +167,7 @@ class _AuthFormState extends State<AuthForm>
                 validator: (_password) {
                   final password = _password ?? '';
                   if (password.isEmpty || password.length < 5) {
-                    return 'Informe uma senha válida';
+                    return 'Enter a valid password.';
                   }
                   return null;
                 },
@@ -191,7 +185,8 @@ class _AuthFormState extends State<AuthForm>
                     position: _slideAnimation!,
                     child: TextFormField(
                       style: TextStyle(color: Colors.black),
-                      decoration: InputDecoration(labelText: 'Confirmar Senha'),
+                      decoration:
+                          InputDecoration(labelText: 'Confirm password'),
                       keyboardType: TextInputType.emailAddress,
                       obscureText: true,
                       validator: _isLogin()
@@ -199,7 +194,7 @@ class _AuthFormState extends State<AuthForm>
                           : (_password) {
                               final password = _password ?? '';
                               if (password != _passwordController.text) {
-                                return 'Senhas informadas não conferem.';
+                                return 'Entered passwords do not match.';
                               }
                               return null;
                             },
@@ -214,7 +209,7 @@ class _AuthFormState extends State<AuthForm>
                 ElevatedButton(
                   onPressed: _submit,
                   child: Text(
-                    _authMode == AuthMode.Login ? 'ENTRAR' : 'REGISTRAR',
+                    _authMode == AuthMode.Login ? 'LOGIN' : 'REGISTER',
                   ),
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
@@ -230,7 +225,7 @@ class _AuthFormState extends State<AuthForm>
               TextButton(
                 onPressed: _switchAuthMode,
                 child: Text(
-                  _isLogin() ? 'DESEJA REGISTRAR?' : 'JÁ POSSUI CONTA?',
+                  _isLogin() ? 'WANT TO REGISTER?' : 'ALREADY HAVE AN ACCOUNT?',
                 ),
               )
             ],

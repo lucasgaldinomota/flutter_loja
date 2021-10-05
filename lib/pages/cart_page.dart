@@ -14,7 +14,7 @@ class CartPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Carrinho'),
+        title: Text('Cart'),
       ),
       body: Column(
         children: [
@@ -38,7 +38,7 @@ class CartPage extends StatelessWidget {
                   Chip(
                     backgroundColor: Theme.of(context).colorScheme.primary,
                     label: Text(
-                      'R\$${cart.totalAmount.toStringAsFixed(2)}',
+                      '\$${cart.totalAmount.toStringAsFixed(2)}',
                       style: TextStyle(
                         color:
                             Theme.of(context).primaryTextTheme.headline6?.color,
@@ -83,7 +83,7 @@ class _CartButtonState extends State<CartButton> {
     return _isLoading
         ? CircularProgressIndicator()
         : TextButton(
-            child: Text('COMPRAR'),
+            child: Text('BUY'),
             style: TextButton.styleFrom(
               textStyle: TextStyle(
                 color: Theme.of(context).colorScheme.primary,

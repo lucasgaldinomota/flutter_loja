@@ -18,11 +18,11 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = ThemeData(
       fontFamily: 'Lato',
+      brightness: Brightness.dark,
       pageTransitionsTheme: PageTransitionsTheme(
         builders: {
           TargetPlatform.iOS: CustomPageTransitionsBuilder(),
@@ -60,19 +60,13 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'My Store',
         theme: theme.copyWith(
           colorScheme: theme.colorScheme.copyWith(
-            primary: Colors.purple,
-            secondary: Colors.deepOrange,
+            primary: Colors.deepPurple[300],
+            secondary: Colors.deepPurple[300],
           ),
         ),
-        // theme: ThemeData(
-        //   primarySwatch: Colors.purple,
-        //   accentColor: Colors.deepOrange,
-        //   fontFamily: 'Lato',
-        // ),
-        // home: ProductsOverviewPage(),
         routes: {
           AppRoutes.AUTH_OR_HOME: (ctx) => AuthOrHomePage(),
           AppRoutes.PRODUCT_DETAIL: (ctx) => ProductDetailPage(),

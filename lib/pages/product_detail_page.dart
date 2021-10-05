@@ -49,7 +49,7 @@ class ProductDetailPage extends StatelessWidget {
               [
                 SizedBox(height: 10),
                 Text(
-                  'R\$ ${product.price}',
+                  '\$ ${product.price}',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.grey,

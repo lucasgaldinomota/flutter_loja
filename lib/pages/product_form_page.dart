@@ -92,8 +92,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
       await showDialog<void>(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: Text('Ocorreu um erro!'),
-          content: Text('Ocorreu um erro para salvar o produto.'),
+          title: Text('An error has occurred!'),
+          content: Text('An error occurred to save the product.'),
           actions: [
             TextButton(
               child: Text('Ok'),
@@ -111,7 +111,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Formulário de Produto'),
+        title: Text('Product Form'),
         actions: [
           IconButton(
             onPressed: _submitForm,
@@ -132,7 +132,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     TextFormField(
                       initialValue: _formData['name']?.toString(),
                       decoration: InputDecoration(
-                        labelText: 'Nome',
+                        labelText: 'Name',
                       ),
                       textInputAction: TextInputAction.next,
                       onFieldSubmitted: (_) {
@@ -143,11 +143,11 @@ class _ProductFormPageState extends State<ProductFormPage> {
                         final name = _name ?? '';
 
                         if (name.trim().isEmpty) {
-                          return 'Nome é obrigatório';
+                          return 'Name is mandatory.';
                         }
 
                         if (name.trim().length < 3) {
-                          return 'Nome precisa no mínimo de 3 letras.';
+                          return 'Name needs at least 3 letters.';
                         }
 
                         return null;
@@ -155,7 +155,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     ),
                     TextFormField(
                       initialValue: _formData['price']?.toString(),
-                      decoration: InputDecoration(labelText: 'Preço'),
+                      decoration: InputDecoration(labelText: 'Price'),
                       textInputAction: TextInputAction.next,
                       focusNode: _priceFocus,
                       keyboardType: TextInputType.numberWithOptions(
@@ -171,7 +171,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                         final price = double.tryParse(priceString) ?? -1;
 
                         if (price <= 0) {
-                          return 'Informe um preço válido.';
+                          return 'Please enter a valid price.';
                         }
 
                         return null;
@@ -179,7 +179,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     ),
                     TextFormField(
                       initialValue: _formData['description']?.toString(),
-                      decoration: InputDecoration(labelText: 'Descrição'),
+                      decoration: InputDecoration(labelText: 'Description'),
                       textInputAction: TextInputAction.next,
                       focusNode: _descriptionFocus,
                       keyboardType: TextInputType.multiline,
@@ -190,11 +190,11 @@ class _ProductFormPageState extends State<ProductFormPage> {
                         final description = _description ?? '';
 
                         if (description.trim().isEmpty) {
-                          return 'Descrição é obrigatória.';
+                          return 'Description is mandatory.';
                         }
 
                         if (description.trim().length < 10) {
-                          return 'Descrição precisa no mínimo de 10 letras.';
+                          return 'Description needs at least 10 letters.';
                         }
 
                         return null;
@@ -205,8 +205,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                       children: [
                         Expanded(
                           child: TextFormField(
-                            decoration:
-                                InputDecoration(labelText: 'Url da Imagem'),
+                            decoration: InputDecoration(labelText: 'Image Url'),
                             keyboardType: TextInputType.url,
                             textInputAction: TextInputAction.done,
                             focusNode: _imageUrlFocus,
@@ -218,7 +217,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                               final imageUrl = _imageUrl ?? '';
 
                               if (!isValidImageUrl(imageUrl)) {
-                                return 'Informe uma Url válida!';
+                                return 'Please enter a valid Url!';
                               }
 
                               return null;
@@ -240,7 +239,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                           ),
                           alignment: Alignment.center,
                           child: _imageUrlController.text.isEmpty
-                              ? Text('Informe a Url')
+                              ? Text('Inform the Url')
                               : Image.network(_imageUrlController.text),
                         ),
                       ],

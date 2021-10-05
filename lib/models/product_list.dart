@@ -143,29 +143,10 @@ class ProductList with ChangeNotifier {
         _items.insert(index, product);
         notifyListeners();
         throw HttpException(
-          msg: 'Não foi possível excluir o produto.',
+          msg: 'Unable to delete the product.',
           statusCode: response.statusCode,
         );
       }
     }
   }
 }
-
-  // bool _showFavoriteOnly = false;
-
-  // List<Product> get items {
-  //   if (_showFavoriteOnly) {
-  //     return _items.where((prod) => prod.isFavorite).toList();
-  //   }
-  //   return [..._items];
-  // }
-
-  // void showFavoriteOnly() {
-  //   _showFavoriteOnly = true;
-  //   notifyListeners();
-  // }
-
-  // void showAll() {
-  //   _showFavoriteOnly = false;
-  //   notifyListeners();
-  // }
