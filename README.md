@@ -1,4 +1,4 @@
-# Projeto Despesas
+# Projeto Loja
 
 Projeto baseado no curso [Aprenda Flutter & Dart e Construa APPs iOS e Android](https://www.cod3r.com.br/courses/aprenda-flutter-dart-e-construa-apps-ios-e-android) da [Cod3r](https://www.cod3r.com.br/).
 O projeto foi modificado por mim para deixar com um visual diferente.
